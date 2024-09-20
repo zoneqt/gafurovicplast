@@ -3,7 +3,7 @@ import Header from "@/components/header";
 import { Alexandria } from "next/font/google";
 import "../styles/globals.css";
 import Footer from "@/components/footer";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const alexandria = Alexandria({

@@ -11,7 +11,7 @@ interface ContactReq extends Request {
   subject: string;
   message: string;
 }
-export async function POST(req: ContactReq, res: NextResponse<ResponseData>) {
+export async function POST(req: ContactReq) {
   const { name, email, subject, message } = await req.json();
 
   if (!name || !email || !subject || !message) {
