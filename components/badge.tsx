@@ -4,7 +4,7 @@ import Image from "next/image";
 interface Props {
   className?: string;
   iconClassName?: string;
-  icon: any;
+  icon: string;
   name: string;
 }
 const Badge = ({ icon, className, name, iconClassName }: Props) => {

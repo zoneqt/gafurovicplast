@@ -1,10 +1,6 @@
 import { mailOptions, transporter } from "@/config/nodemailer";
 import { NextResponse } from "next/server";
 
-type ResponseData = {
-  message: string;
-};
-
 interface ContactReq extends Request {
   name: string;
   email: string;
@@ -31,9 +27,6 @@ export async function POST(req: ContactReq) {
 
     return NextResponse.json({ message: "success" }, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: "Failed to send email" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: error }, { status: 500 });
   }
 }
