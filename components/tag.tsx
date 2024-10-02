@@ -7,7 +7,7 @@ interface Props {
 
 const Tag = ({ name }: Props) => {
   return (
-    <div className="bg-backgroundAlt px-[10px] py-[5px] rounded-[5px] text-[12px] text-primaryGreen">
+    <div className="bg-backgroundAlt px-[10px] py-[5px] rounded-[5px] text-[12px] text-primaryGreen shrink-0">
       {name}
     </div>
   );

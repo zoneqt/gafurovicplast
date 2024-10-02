@@ -86,8 +86,9 @@ const Contact = () => {
               <div className="card-content bg-backgroundAlt rounded-[25px]"></div>
               <div className="flex flex-col gap-[20px] relative">
                 <p className="text-[14px] font-regular text-text">
-                  Feel free to reach out—I'd love to connect<br></br> and
-                  discuss how we can work together!
+                  Feel free to reach out—I'd love to connect
+                  <br className="max-sm:hidden"></br> and discuss how we can
+                  work together!
                 </p>
                 <form
                   onSubmit={handleSubmit}

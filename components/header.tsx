@@ -9,9 +9,10 @@ import AnimatedHamburger from "./animated-hamburger";
 const Header = () => {
   const handleClick = (id: string) => {
     const element = document.getElementById(id);
-    element?.scrollIntoView({
-      behavior: "smooth",
-    });
+    const y =
+      (element && element.getBoundingClientRect().top + window.scrollY - 60) ||
+      0;
+    window.scrollTo({ top: y, behavior: "smooth" });
   };
 
   return (

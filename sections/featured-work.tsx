@@ -6,6 +6,7 @@ import Image from "next/image";
 import ZikApp from "/public/images/zikApp.png";
 import ZikLanding from "/public/images/zikLanding.png";
 import WorkCard from "../components/work-card";
+import Link from "next/link";
 
 const FeaturedWork = () => {
   return (
@@ -19,22 +20,29 @@ const FeaturedWork = () => {
                   Featured Work
                 </h2>
               </div>
-              <WorkCard
-                title="ZIK"
-                titleAlt="Landing"
-                image={ZikLanding}
-                tags={["Next.js", "Emotion.css"]}
-              />
+              <Link href={"https://www.zikanalytics.com/"} target="_blank">
+                <WorkCard
+                  title="ZIK"
+                  titleAlt="Landing"
+                  image={ZikLanding}
+                  tags={["Next.js", "Emotion.css"]}
+                />
+              </Link>
             </div>
             <div className="flex flex-col w-full max-lg:items-center">
-              <WorkCard
-                title="ZIK"
-                titleAlt="App"
-                image={ZikApp}
-                tags={["React", "Redux Toolkit", "Tailwind"]}
-                imgRight
-              />
+              <Link href={"https://app.zikanalytics.com/login"} target="_blank">
+                <WorkCard
+                  title="ZIK"
+                  titleAlt="App"
+                  image={ZikApp}
+                  tags={["React", "Redux Toolkit", "Tailwind"]}
+                  imgRight
+                />
+              </Link>
             </div>
+          </div>
+          <div className="text-center mt-10 text-lg text-textAlt">
+            More projects coming soon ... 🧙
           </div>
         </Container>
       </Section>
