@@ -4,6 +4,7 @@ import Container from "@/components/container";
 import Loading from "@/components/loading";
 import Section from "@/components/section";
 import { FormikValues, useFormik } from "formik";
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Bounce, toast } from "react-toastify";
 import * as yup from "yup";
@@ -74,117 +75,126 @@ const Contact = () => {
   });
 
   return (
-    <Section>
-      <Container>
-        <div className="flex flex-col items-center gap-[40px]">
-          <h2 className="text-[36px] font-bold max-lg:text-[28px] leading-[1.2] max-md:text-[24px]">
-            Get in touch
-          </h2>
-          <div className="max-w-[750px] w-full p-[40px] gap-[20px] flex bg-backgroundAlt rounded-[25px] max-sm:flex-col">
-            <div className="flex flex-col gap-[20px]">
-              <p className="text-[14px] font-regular text-text">
-                Feel free to reach out—I'd love to connect<br></br> and discuss
-                how we can work together!
-              </p>
-              <form
-                onSubmit={handleSubmit}
-                className="gap-[20px] flex flex-col"
-                autoComplete="off"
-              >
-                <div className="relative">
-                  <input
-                    onChange={handleChange}
-                    value={values.name}
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    className={`w-full bg-background px-[12px] py-[8px] outline-none rounded-[5px] border-[1px] border-[#808186] text-[14px] focus:border-primaryGreen ${
-                      errors.name && touched.name && "border-[#ff5252]"
-                    }`}
-                    onBlur={handleBlur}
-                  />
-                  {errors.name && touched.name && (
-                    <span className="absolute left-0 w-full top-[100%] text-[12px] font-light text-[#ff5252]">
-                      {errors.name}
-                    </span>
-                  )}
-                </div>
-                <div className="relative">
-                  <input
-                    onChange={handleChange}
-                    value={values.email}
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    className={`w-full bg-background px-[12px] py-[8px] outline-none rounded-[5px] border-[1px] border-[#808186] text-[14px] focus:border-primaryGreen ${
-                      errors.email && touched.email && "border-[#ff5252]"
-                    }`}
-                    onBlur={handleBlur}
-                  />
-                  {errors.email && touched.email && (
-                    <span className="absolute left-0 w-full top-[100%] text-[12px] font-light text-[#ff5252]">
-                      {errors.email}
-                    </span>
-                  )}
-                </div>
-                <div className="relative">
-                  <input
-                    onChange={handleChange}
-                    value={values.subject}
-                    type="text"
-                    name="subject"
-                    placeholder="Subject"
-                    className={`w-full bg-background px-[12px] py-[8px] outline-none rounded-[5px] border-[1px] border-[#808186] text-[14px] focus:border-primaryGreen ${
-                      errors.subject && touched.subject && "border-[#ff5252]"
-                    }`}
-                    onBlur={handleBlur}
-                  />
-                  {errors.subject && touched.subject && (
-                    <span className="absolute left-0 w-full top-[100%] text-[12px] font-light text-[#ff5252]">
-                      {errors.subject}
-                    </span>
-                  )}
-                </div>
-                <div className="relative">
-                  <textarea
-                    onChange={handleChange}
-                    value={values.message}
-                    name="message"
-                    placeholder="Message"
-                    className={`w-full min-h-[100px] bg-background px-[12px] py-[8px] outline-none rounded-[5px] border-[1px] border-[#808186] text-[14px] resize-none focus:border-primaryGreen ${
-                      errors.message && touched.message && "border-[#ff5252]"
-                    }`}
-                    onBlur={handleBlur}
-                  />
-                  <span className="absolute left-0 w-full top-[100%] text-[12px] font-light text-[#ff5252]">
-                    {errors.message && touched.message && errors.message}
-                  </span>
-                </div>
-                {isLoading ? (
-                  <div className="w-full h-[40px] flex items-center justify-center p-[10px] border-[1px] border-primaryGreen text-primaryGreen font-medium rounded-[5px]">
-                    <Loading />
+    <div id="contact">
+      <Section>
+        <Container>
+          <div className="flex flex-col items-center gap-[40px] ">
+            <h2 className="text-[36px] font-bold max-lg:text-[28px] leading-[1.2] max-md:text-[24px]">
+              Get in touch
+            </h2>
+            <div className="max-w-[750px] w-full p-[40px] gap-[20px] flex bg-backgroundAlt rounded-[25px] max-sm:flex-col card-wrapper">
+              <div className="card-content bg-backgroundAlt rounded-[25px]"></div>
+              <div className="flex flex-col gap-[20px] relative">
+                <p className="text-[14px] font-regular text-text">
+                  Feel free to reach out—I'd love to connect<br></br> and
+                  discuss how we can work together!
+                </p>
+                <form
+                  onSubmit={handleSubmit}
+                  className="gap-[20px] flex flex-col"
+                  autoComplete="off"
+                >
+                  <div className="relative">
+                    <input
+                      onChange={handleChange}
+                      value={values.name}
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                      className={`w-full bg-background px-[12px] py-[8px] outline-none rounded-[5px] border-[1px] border-[#808186] text-[14px] focus:border-primaryGreen ${
+                        errors.name && touched.name && "border-[#ff5252]"
+                      }`}
+                      onBlur={handleBlur}
+                    />
+                    {errors.name && touched.name && (
+                      <span className="absolute left-0 w-full top-[100%] text-[12px] font-light text-[#ff5252]">
+                        {errors.name}
+                      </span>
+                    )}
                   </div>
-                ) : (
-                  <button
-                    type="submit"
-                    className="w-full h-[40px] flex items-center justify-center p-[10px] border-[1px] border-primaryGreen text-primaryGreen font-medium rounded-[5px] hover:bg-primaryGreen hover:text-backgroundAlt"
-                  >
-                    Submit
-                  </button>
-                )}
-              </form>
-            </div>
-            <div className="w-[1px] min-h-full bg-background max-sm:min-h-auto max-sm:h-[1px] max-sm:w-full"></div>
-            <div className="flex flex-col justify-center max-sm:text-center">
-              <p className="text-text text-[20px] font-semiBold">Based in</p>
-              <p className="text-primaryGreen text-[16px] font-light leading-[1]">
-                Bosnia & Herzegovina <br></br>Bugojno , 70230
-              </p>
+                  <div className="relative">
+                    <input
+                      onChange={handleChange}
+                      value={values.email}
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      className={`w-full bg-background px-[12px] py-[8px] outline-none rounded-[5px] border-[1px] border-[#808186] text-[14px] focus:border-primaryGreen ${
+                        errors.email && touched.email && "border-[#ff5252]"
+                      }`}
+                      onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email && (
+                      <span className="absolute left-0 w-full top-[100%] text-[12px] font-light text-[#ff5252]">
+                        {errors.email}
+                      </span>
+                    )}
+                  </div>
+                  <div className="relative">
+                    <input
+                      onChange={handleChange}
+                      value={values.subject}
+                      type="text"
+                      name="subject"
+                      placeholder="Subject"
+                      className={`w-full bg-background px-[12px] py-[8px] outline-none rounded-[5px] border-[1px] border-[#808186] text-[14px] focus:border-primaryGreen ${
+                        errors.subject && touched.subject && "border-[#ff5252]"
+                      }`}
+                      onBlur={handleBlur}
+                    />
+                    {errors.subject && touched.subject && (
+                      <span className="absolute left-0 w-full top-[100%] text-[12px] font-light text-[#ff5252]">
+                        {errors.subject}
+                      </span>
+                    )}
+                  </div>
+                  <div className="relative">
+                    <textarea
+                      onChange={handleChange}
+                      value={values.message}
+                      name="message"
+                      placeholder="Message"
+                      className={`w-full min-h-[100px] bg-background px-[12px] py-[8px] outline-none rounded-[5px] border-[1px] text-[14px] resize-none focus:border-primaryGreen ${
+                        errors.message && touched.message && "border-[#ff5252]"
+                      }`}
+                      onBlur={handleBlur}
+                    />
+                    <span className="absolute left-0 w-full top-[100%] text-[12px] font-light text-[#ff5252]">
+                      {errors.message && touched.message && errors.message}
+                    </span>
+                  </div>
+                  {isLoading ? (
+                    <div className="w-full h-[40px] flex items-center justify-center p-[10px] border-[1px] border-primaryGreen text-primaryGreen font-medium rounded-[5px]">
+                      <Loading />
+                    </div>
+                  ) : (
+                    <motion.button
+                      type="submit"
+                      className="w-full h-[40px] flex items-center justify-center p-[10px] border-[1px] border-primaryGreen text-primaryGreen font-medium rounded-[5px] hover:bg-primaryGreen hover:text-backgroundAlt"
+                      whileTap={{ scale: 0.9 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
+                    >
+                      Submit
+                    </motion.button>
+                  )}
+                </form>
+              </div>
+              <div className="w-[1px] min-h-full bg-background max-sm:min-h-auto max-sm:h-[1px] max-sm:w-full relative"></div>
+              <div className="flex flex-col justify-center max-sm:text-center relative">
+                <p className="text-text text-[20px] font-semiBold">Based in</p>
+                <p className="text-primaryGreen text-[16px] font-light leading-[1]">
+                  Bosnia & Herzegovina <br></br>Bugojno , 70230
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </Container>
-    </Section>
+        </Container>
+      </Section>
+    </div>
   );
 };
 

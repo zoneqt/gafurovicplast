@@ -21,7 +21,24 @@ body {
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Act as a border */
+  .card-wrapper {
+    @apply relative overflow-hidden bg-backgroundAlt;
+  }
+
+  /* Gradient */
+  .card-wrapper::before {
+    background: conic-gradient(
+      rgba(100, 244, 172, 0.4) 0deg,
+      rgba(100, 244, 172, 0.4) 0deg,
+      transparent 80deg
+    );
+
+    @apply absolute left-[-25%] top-[-50%] h-[200%] w-[150%] animate-border-spin content-[''];
+  }
+
+  /* Body */
+  .card-content {
+    @apply absolute left-[1px] top-[1px] h-[calc(100%-2px)] w-[calc(100%-2px)] bg-backgroundAlt;
   }
 }
