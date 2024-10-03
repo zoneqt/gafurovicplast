@@ -32,7 +32,7 @@ const Hero = () => {
                 Hi, I'm Benjamin Velić 👋
               </h1>
               <h2 className="font-bold text-[36px] text-textPrimary max-lg:text-[28px] leading-[1.2] max-md:text-[24px]">
-                Frontend Developer <br></br> with Backend Expertise
+                Software Developer
               </h2>
               <p className="text-textAlt text-[18px] max-lg:text-[16px] max-md:text-[14px]">
                 Crafting intuitive and dynamic user experiences with a strong

@@ -13,7 +13,11 @@ interface Props {
 const WorkCard = ({ title, titleAlt, tags, image, imgRight }: Props) => {
   return (
     <div className="bg-background py-[20px] flex flex-col rounded-[35px] gap-[20px] max-w-[600px] max-md:gap-[20px] max-md:py-[20px]">
-      <div className="flex px-[40px] items-center justify-between max-md:px-[20px]">
+      <div
+        className={`flex px-[40px] items-center max-md:px-[20px] ${
+          imgRight && "justify-end"
+        }`}
+      >
         <p className="text-[20px]">
           {title} <span className="text-textAlt ">{titleAlt}</span>
         </p>
@@ -25,7 +29,11 @@ const WorkCard = ({ title, titleAlt, tags, image, imgRight }: Props) => {
       >
         <Image src={image} alt="" />
       </div>
-      <div className="flex items-center gap-[5px] px-[40px] max-md:px-[20px] flex-wrap">
+      <div
+        className={`flex items-center gap-[5px] px-[40px] max-md:px-[20px] flex-wrap ${
+          imgRight && "justify-end"
+        }`}
+      >
         {tags.map((tag, index) => (
           <Tag key={index} name={tag} />
         ))}

@@ -155,7 +155,7 @@ const Contact = () => {
                       value={values.message}
                       name="message"
                       placeholder="Message"
-                      className={`w-full min-h-[100px] bg-background px-[12px] py-[8px] outline-none rounded-[5px] border-[1px] text-[14px] resize-none focus:border-primaryGreen ${
+                      className={`w-full min-h-[100px] bg-background px-[12px] py-[8px] outline-none rounded-[5px] border-[1px] border-[#808186] text-[14px] resize-none focus:border-primaryGreen ${
                         errors.message && touched.message && "border-[#ff5252]"
                       }`}
                       onBlur={handleBlur}
