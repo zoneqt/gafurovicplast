@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "Benjamin Velic",
     description:
       "Benjamin Velic is a software developer focused on creating accessible and inclusive digital products and web experiences",
-    images: "/images/benjaminvelic.png",
+    images: "https://benjaminvelic.dev/images/benjaminvelic.png",
   },
 };
 
