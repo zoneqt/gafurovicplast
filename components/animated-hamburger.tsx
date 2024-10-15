@@ -13,6 +13,13 @@ function AnimatedHamburger({ handleClick }: Props) {
   const screenSize = useScreenSize();
   const [menuOffset, setMenuOffset] = useState(60);
 
+  const onClick = (id: string) => {
+    setActive(false);
+    setTimeout(() => {
+      handleClick(id);
+    }, 650);
+  };
+
   useEffect(() => {
     setMenuOffset(screenSize.width < 640 ? 32 : 64);
   }, [screenSize.width]);
@@ -132,6 +139,7 @@ function AnimatedHamburger({ handleClick }: Props) {
         >
           <div className="flex flex-col h-full">
             <motion.div
+              style={{ opacity: 0, y: -20 }}
               transition={{
                 delay: active ? 0.75 : 0,
               }}
@@ -161,21 +169,21 @@ function AnimatedHamburger({ handleClick }: Props) {
               <motion.div
                 variants={listVariants}
                 className="text-[46px] font-bold text-textAlt hover:text-primaryGreen cursor-pointer"
-                onClick={() => handleClick("")}
+                onClick={() => onClick("about")}
               >
                 About
               </motion.div>
               <motion.div
                 variants={listVariants}
                 className="text-[46px] font-bold text-textAlt hover:text-primaryGreen cursor-pointer"
-                onClick={() => handleClick("")}
+                onClick={() => onClick("work")}
               >
                 Work
               </motion.div>
               <motion.div
                 variants={listVariants}
                 className="text-[46px] font-bold text-textAlt hover:text-primaryGreen cursor-pointer"
-                onClick={() => handleClick("")}
+                onClick={() => onClick("contact")}
               >
                 Contact
               </motion.div>
