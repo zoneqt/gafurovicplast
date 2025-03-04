@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Header from "@/components/header";
 import { Roboto, Audiowide } from "next/font/google";
 import "../styles/globals.css";
-import Footer from "@/components/footer";
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ReactLenis } from "@/utils/lenis";
@@ -43,7 +42,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
-          <Footer />
+          {/*  <Footer /> */}
           <ToastContainer
             position="bottom-right"
             autoClose={5000}
