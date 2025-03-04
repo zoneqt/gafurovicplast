@@ -2,51 +2,126 @@
 
 import Container from "@/components/container";
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
 import AboutImage from "/public/images/about.png";
 import Section from "@/components/section";
+import {
+  motion,
+  useInView,
+  useMotionTemplate,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import Link from "next/link";
+import { PiPhoneCall } from "react-icons/pi";
+
+export const imageLoader = ({ src, width }: { src: string; width: number }) => {
+  return `${src}?w=${width}}`;
+};
+
+const defaultAnimation = {
+  hidden: {
+    opacity: 0,
+    transform: "translateY(25px)",
+  },
+  visible: {
+    opacity: 1,
+    transform: "translateY(0)",
+    transition: { duration: 0.3, ease: "easeIn" },
+  },
+};
+
+const imageAnimation = {
+  hidden: {
+    opacity: 0,
+    transform: "translateY(100px)",
+    filter: "blur(5px)",
+  },
+  visible: {
+    opacity: 1,
+    transform: "translateY(0)",
+    filter: "blur(0px)",
+    transition: { duration: 0.5, ease: "easeIn" },
+  },
+};
 
 const About = () => {
-  return (
-    <div id="about">
-      <Section className="bg-backgroundAlt">
-        <Container>
-          <div className="flex items-center gap-[80px] max-lg:gap-[40px] max-[950px]:flex-col-reverse ">
-            <div className="max-w-[340px] w-full">
-              <Image className="w-full" src={AboutImage} alt="about image" />
-            </div>
+  const ref = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "end start"],
+  });
+  const isInView = useInView(contentRef, { once: true });
 
-            <div className="flex flex-col gap-[20px] w-full">
-              <h2 className="font-bold text-[36px] text-textPrimary max-lg:text-[28px] leading-[1.2] max-md:text-[24px]">
-                Background
-              </h2>
-              <p className="text-textAlt text-[18px] max-lg:text-[16px] max-md:text-[14px]">
-                I'm currently an{" "}
-                <span className="text-textPrimary">Developer</span> at{" "}
-                <span className="text-primaryGreen">ZIK</span> building things
-                for the web with some awesome people. Since joining in 2017,
-                I've been part of the journey from startup to becoming a{" "}
-                <span className="text-textPrimary">
-                  leader in market analytics software
-                </span>
-                .
-              </p>
-              <p className="text-textAlt text-[18px] max-lg:text-[16px] max-md:text-[14px]">
-                As a software developer, I love connecting the dots between
-                engineering and design—leveraging my technical expertise and
-                design sense to craft visually appealing products. I strive to
-                create applications that are not only scalable and efficient
-                behind the scenes but also deliver seamless, pixel-perfect user
-                experiences.
-              </p>
-              <p className="text-textAlt text-[18px] max-lg:text-[16px] max-md:text-[14px]">
-                <span className="text-textPrimary">
-                  When I'm away from the computer
-                </span>
-                , you’ll likely find me spending quality time with my wife and
-                daughter or relaxing with friends.
-              </p>
-            </div>
+  const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
+  const translateY = useMotionTemplate`${y}%`;
+  return (
+    <div ref={ref}>
+      <Section className="pt-[200px] max-lg:pt-[80px]">
+        <Container>
+          <div className="flex items-center justify-center gap-[80px] max-lg:flex-col">
+            <motion.div
+              variants={imageAnimation}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="w-fit shrink-0 relative overflow-hidden max-lg:w-full"
+            >
+              {/*  <motion.div
+                style={{ translateY }}
+                className="absolute w-[50px] h-full bg-primaryYellow/70 left-[50%] translate-x-[-50%]"
+              ></motion.div> */}
+              <Image
+                loader={imageLoader}
+                src="/images/about-img.jpg"
+                alt=""
+                width={500}
+                height={500}
+                className="w-[400px] h-[550px] object-cover rounded-[15px] max-lg:w-full max-lg:h-[300px]"
+              />
+            </motion.div>
+            <motion.div
+              ref={contentRef}
+              className="flex flex-col max-w-[450px] gap-[20px] max-lg:max-w-full"
+              variants={{
+                visible: {
+                  transition: {
+                    duration: 100,
+                    ease: "ease",
+                    staggerChildren: 0.3,
+                    delayChildren: 0.3,
+                  },
+                },
+                hidden: {},
+              }}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              <motion.h2
+                variants={defaultAnimation}
+                className="text-[46px] font-bold"
+              >
+                Gafurović Plast
+              </motion.h2>
+              <motion.p variants={defaultAnimation} className="text-textAlt">
+                Naša firma specijalizovana je za proizvodnju visokokvalitetne
+                PVC i aluminijske stolarije, uključujući vrata i prozore koji
+                zadovoljavaju najviše standarde izdržljivosti, energetske
+                efikasnosti i estetskog izgleda. Sa dugogodišnjim iskustvom u
+                industriji, posvećeni smo pružanju proizvoda koji kombinuju
+                savremeni dizajn, vrhunsku funkcionalnost i pouzdanost.
+              </motion.p>
+              <motion.div variants={defaultAnimation}>
+                <Link
+                  className="w-[190px] h-[50px] rounded-full border-[1px] border-black flex items-center justify-center gap-[10px] text-black hover:bg-primaryYellow hover:border-primaryYellow hover:text-black hover:shadow-btnShadow transition ease duration-150"
+                  aria-label="telephone"
+                  href="tel:+38761024472"
+                >
+                  <PiPhoneCall className="text-[20px]" />
+                  <span className="font-light">Kontaktirajte nas</span>
+                </Link>
+              </motion.div>
+            </motion.div>
           </div>
         </Container>
       </Section>

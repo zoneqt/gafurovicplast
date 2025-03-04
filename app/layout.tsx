@@ -1,27 +1,32 @@
 import type { Metadata } from "next";
 import Header from "@/components/header";
-import { Alexandria } from "next/font/google";
+import { Roboto, Audiowide } from "next/font/google";
 import "../styles/globals.css";
 import Footer from "@/components/footer";
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ReactLenis } from "@/utils/lenis";
 
-const alexandria = Alexandria({
+const roboto = Roboto({
   subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+});
+const audiowide = Audiowide({
+  subsets: ["latin"],
+  variable: "--audiowide",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
-  title: "Benjamin Velic",
-  description:
-    "Benjamin Velic is a software developer focused on creating accessible and inclusive digital products and web experiences",
+  title: "Gafurović Plast d.o.o",
+  description: "",
   openGraph: {
-    title: "Benjamin Velic",
+    title: "Gafurović Plast d.o.o",
     type: "website",
-    url: "https://benjaminvelic.dev/",
-    siteName: "Benjamin Velic",
-    description:
-      "Benjamin Velic is a software developer focused on creating accessible and inclusive digital products and web experiences",
-    images: "https://benjaminvelic.dev/images/benjaminvelic.png",
+    url: "https://gafurovicplast.com",
+    siteName: "Gafurović Plast d.o.o",
+    description: "",
+    images: "https://gafurovicplast.com/images/metaimage.png",
   },
 };
 
@@ -32,24 +37,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${alexandria.className} antialiased`}>
-        <Header />
-        {children}
-        <Footer />
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          transition={Bounce}
-        />
-      </body>
+      <ReactLenis root>
+        <body
+          className={`${roboto.className} ${audiowide.variable} antialiased`}
+        >
+          <Header />
+          {children}
+          <Footer />
+          <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
+        </body>
+      </ReactLenis>
     </html>
   );
 }

@@ -10,22 +10,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#2D2E32",
+        background: "#F1EEE9",
         backgroundAlt: "#25262A",
-        primaryGreen: "#64F4AC",
-        textPrimary: "#FFFFFF",
-        textAlt: "#808186",
+        primaryYellow: "#F6D814",
+        textPrimary: "#000000",
+        textAlt: "#5d5d5d",
       },
       fontWeight: {
         light: "300",
         regular: "400",
         medium: "500",
-        semiBold: "600",
         bold: "700",
       },
     },
     boxShadow: {
       badgeShadow: "10px 10px 25px 0 rgba(24,24,26, 0.35)",
+      btnShadow: "3px 3px 10px 0 rgba(0,0,0, 0.2)",
+      imageShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
     },
     keyframes: {
       "border-spin": {

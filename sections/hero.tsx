@@ -1,105 +1,145 @@
 "use client";
 
-import Container from "@/components/container";
-import Image from "next/image";
-import React, { useRef } from "react";
-import HeroImage from "/public/images/hero.png";
+import React, { useEffect, useRef, useState } from "react";
 import Section from "@/components/section";
-import Badge from "@/components/badge";
-import ReactIcon from "/public/icons/react.svg";
-import JsIcon from "/public/icons/js.svg";
-import CsharpIcon from "/public/icons/csharp.svg";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { Swiper, SwiperRef, SwiperSlide, useSwiper } from "swiper/react";
+import ProzoriImg from "/public/images/hero-1.jpg";
+import VrataImg from "/public/images/hero-2.jpg";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { Parallax, Pagination, Navigation } from "swiper/modules";
+import Image from "next/image";
+import Container from "@/components/container";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { sliderData } from "@/utils/static/slider-data";
+import Link from "next/link";
+import { PiPhoneCall } from "react-icons/pi";
 
 const Hero = () => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const [parallaxAmount, setParalaxAmount] = useState(ref.current?.clientWidth);
+  const prev = useRef(null);
+  const next = useRef(null);
+  const [activeSlide, setActiveSlide] = useState(0);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end center"],
+    offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 70]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 220]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const transform = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const clipPath = useMotionTemplate`inset(${transform}% 0 0 0)`;
+
+  useEffect(() => {
+    console.log(ref.current?.clientWidth);
+    setParalaxAmount(
+      ref.current?.clientWidth ? ref.current?.clientWidth * 0.95 : 0
+    );
+  }, [ref.current?.clientWidth]);
 
   return (
     <div ref={ref}>
-      <Section className="min-h-[calc(100vh-88px)] max-lg:min-h-[calc(100vh-68px)] flex items-center">
-        <Container>
-          <div className="flex items-center justify-between gap-[40px] max-md:flex-col">
-            <div className="flex flex-col gap-[10px] max-w-[570px] w-full max-md:text-center">
-              <h1 className="text-primaryGreen text-[18px] font-regular max-lg:text-[16px] max-md:text-[14px]">
-                Hi, I'm Benjamin Velić 👋
-              </h1>
-              <h2 className="font-bold text-[36px] text-textPrimary max-lg:text-[28px] leading-[1.2] max-md:text-[24px]">
-                Software Developer
-              </h2>
-              <p className="text-textAlt text-[18px] max-lg:text-[16px] max-md:text-[14px]">
-                Crafting intuitive and dynamic user experiences with a strong
-                foundation in backend development. Let's build something amazing
-                together.
-              </p>
+      <Section className="min-h-[100vh] !py-0 !px-0 relative">
+        <motion.div
+          style={{ clipPath }}
+          className="absolute w-[50px] h-[40vh] bg-primaryYellow/70 bottom-0 right-[107px] z-20 max-md:right-[77px] max-sm:hidden"
+        ></motion.div>
+
+        <div className="absolute bottom-[60px] right-[60px] text-white z-30 max-md:right-[30px] max-sm:hidden">
+          <div className="flex items-center gap-[10px]">
+            <div ref={prev} className="cursor-pointer">
+              <SlArrowLeft className="text-[46px]" />
             </div>
-
-            <div className="">
-              <div className="max-w-[440px] relative max-h-[440px] min-w-[300px] max-md:max-w-[300px] w-full h-full rounded-full bg-gradient-to-r from-[#2D2E32] via-26% to-[#28292B] via-100%">
-                <Image
-                  className="w-full rounded-full"
-                  src={HeroImage}
-                  alt="hero image"
-                />
-
-                <motion.div
-                  style={{
-                    y,
-                    opacity,
-                    transition:
-                      "all 600ms cubic-bezier(0.68,-0.55,0.27,1.55) 25ms",
-                  }}
-                  className="absolute bottom-[83px] left-[-12px]"
-                >
-                  <Badge
-                    icon={ReactIcon}
-                    name="React"
-                    className="w-[80px] h-[80px] shadow-badgeShadow  max-[1050px]:bottom-[55px]"
-                    iconClassName="w-[52px]"
-                  />
-                </motion.div>
-                <motion.div
-                  style={{
-                    y: y1,
-                    opacity,
-                    transition:
-                      "all 600ms cubic-bezier(0.68,-0.55,0.27,1.55) 100ms",
-                  }}
-                  className="absolute bottom-[0px] right-[25px]"
-                >
-                  <Badge
-                    icon={JsIcon}
-                    name="Javascript"
-                    className="w-[100px] h-[100px] shadow-badgeShadow max-[1050px]:right-[12px]"
-                    iconClassName="w-[57px]"
-                  />
-                </motion.div>
-                <motion.div
-                  style={{
-                    y: y2,
-                    opacity,
-                    transition: "all 1000ms cubic-bezier(0.68,-0.55,0.27,1.55)",
-                  }}
-                  className="absolute top-[12px] right-[48px]"
-                >
-                  <Badge
-                    icon={CsharpIcon}
-                    name="C#"
-                    className="w-[70px] h-[70px] shadow-badgeShadow max-[1050px]:right-[24px] max-[1050px]:top-[-7px]"
-                    iconClassName="w-[44px]"
-                  />
-                </motion.div>
-              </div>
+            <div className="">{activeSlide + 1} / 2</div>
+            <div ref={next} className="cursor-pointer">
+              <SlArrowRight className="text-[46px]" />
             </div>
           </div>
-        </Container>
+        </div>
+        <Swiper
+          speed={1000}
+          parallax={true}
+          loop={true}
+          modules={[Parallax, Navigation]}
+          spaceBetween={0}
+          effect="slide"
+          onRealIndexChange={(swiper) => setActiveSlide(swiper.realIndex)}
+          onBeforeInit={(swiper: any) => {
+            swiper.params.navigation.prevEl = prev.current;
+            swiper.params.navigation.nextEl = next.current;
+          }}
+          navigation={{
+            nextEl: next.current,
+            prevEl: prev.current,
+          }}
+        >
+          <>
+            {sliderData.map((item, i) => (
+              <SwiperSlide key={i}>
+                <div className="w-full h-[100vh] relative overflow-hidden">
+                  <div className="absolute w-full h-full bg-black/55 z-[1]"></div>
+                  <div
+                    className="w-full h-full"
+                    data-swiper-parallax={parallaxAmount}
+                  >
+                    <Image
+                      src={item.sliderImg}
+                      alt={"Vrata"}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute w-full bottom-0 left-0 px-[60px] pb-[60px] text-white max-md:px-[30px] z-30">
+                    <Container className="max-lg:max-w-full">
+                      <div className="flex items-end max-lg:flex-col max-lg:items-start max-lg:gap-[20px] relative">
+                        <div>
+                          <div
+                            className="text-[8vw] leading-[8vw] font-bold audiowide"
+                            data-swiper-parallax="-2000"
+                          >
+                            {item.sliderTitle}
+                          </div>
+                          <div
+                            className="text-[28px] leading-[28px] mt-[28px]"
+                            data-swiper-parallax="-600"
+                          >
+                            {item.sliderSubTitle}
+                          </div>
+                        </div>
+
+                        <div
+                          className="max-w-[400px] mx-auto text-[16px] flex flex-col gap-[40px] max-lg:mx-0"
+                          data-swiper-parallax="-100"
+                        >
+                          <p>{item.sliderContent}</p>
+                          <Link
+                            className="w-[190px] h-[50px] rounded-full border-[1px] border-white flex items-center justify-center gap-[10px] text-white transition-all hover:bg-primaryYellow hover:border-primaryYellow hover:text-black"
+                            aria-label="telephone"
+                            href="tel:+38761024472"
+                          >
+                            <PiPhoneCall className="text-[20px]" />
+                            <span className="font-light">
+                              Kontaktirajte nas
+                            </span>
+                          </Link>
+                        </div>
+                      </div>
+                    </Container>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </>
+        </Swiper>
       </Section>
     </div>
   );
