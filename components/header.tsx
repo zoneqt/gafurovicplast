@@ -59,6 +59,14 @@ const Header = () => {
                 <PiPhoneCall className="text-[20px]" />
                 <span className="font-light">+387 61 024 472</span>
               </Link>
+              <Link
+                className="w-[190px] h-[50px] rounded-full border-[1px] border-white flex items-center justify-center gap-[10px] text-white transition-all hover:bg-primaryYellow hover:border-primaryYellow hover:text-black"
+                aria-label="telephone"
+                href="tel:+38761024472"
+              >
+                <PiPhoneCall className="text-[20px]" />
+                <span className="font-light">+387 61 024 473</span>
+              </Link>
             </div>
             <AnimatedHamburger handleClick={handleClick} active={active} />
           </div>
