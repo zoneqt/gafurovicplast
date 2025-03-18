@@ -31,7 +31,7 @@ const Header = () => {
                 }`}
               />
             </div>
-            <div className="flex items-center gap-[20px] max-md:hidden">
+            <div className="flex items-center gap-[20px] max-lg:hidden">
               <Link
                 href={""}
                 className="w-[50px] h-[50px] rounded-full border-[1px] border-white flex items-center justify-center text-white transition-all hover:bg-primaryYellow hover:border-primaryYellow hover:text-black"
@@ -62,7 +62,7 @@ const Header = () => {
               <Link
                 className="w-[190px] h-[50px] rounded-full border-[1px] border-white flex items-center justify-center gap-[10px] text-white transition-all hover:bg-primaryYellow hover:border-primaryYellow hover:text-black"
                 aria-label="telephone"
-                href="tel:+38761024472"
+                href="tel:+38761024473"
               >
                 <PiPhoneCall className="text-[20px]" />
                 <span className="font-light">+387 61 024 473</span>
@@ -72,7 +72,7 @@ const Header = () => {
           </div>
         </Container>
         <div
-          className="fixed top-0 left-0 h-[100vh] w-full bg-background z-50 hidden max-md:block px-[30px] py-[30px] pt-[90px] overflow-hidden"
+          className="fixed top-0 left-0 h-[100vh] w-full bg-background z-50 hidden max-lg:block px-[30px] py-[30px] pt-[90px] overflow-hidden"
           style={{
             transform: active ? "translateX(0%)" : "translateX(-100%)",
             transition: "all 300ms ease",

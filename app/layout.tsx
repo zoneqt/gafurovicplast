@@ -18,13 +18,15 @@ const audiowide = Audiowide({
 
 export const metadata: Metadata = {
   title: "Gafurović Plast d.o.o",
-  description: "",
+  description:
+    "Gafurović Plast je specijaliziran za visokokvalitetne PVC i aluminijske prozore, vrata i garažna vrata. Nudimo moderna, energetski efikasna rješenja dizajnirana za trajnost, sigurnost i estetski izgled. Naši proizvodi zadovoljavaju najviše standarde, pružajući udobnost i pouzdanost za vaš dom ili poslovni prostor. Otkrijte naše vrhunske dizajne i usluge za sve vaše građevinske potrebe.",
   openGraph: {
     title: "Gafurović Plast d.o.o",
     type: "website",
     url: "https://gafurovicplast.com",
     siteName: "Gafurović Plast d.o.o",
-    description: "",
+    description:
+      "Gafurović Plast je specijaliziran za visokokvalitetne PVC i aluminijske prozore, vrata i garažna vrata. Nudimo moderna, energetski efikasna rješenja dizajnirana za trajnost, sigurnost i estetski izgled. Naši proizvodi zadovoljavaju najviše standarde, pružajući udobnost i pouzdanost za vaš dom ili poslovni prostor. Otkrijte naše vrhunske dizajne i usluge za sve vaše građevinske potrebe.",
     images: "https://gafurovicplast.com/images/metaimage.png",
   },
 };

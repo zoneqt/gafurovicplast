@@ -16,7 +16,7 @@ function AnimatedHamburger({ active, handleClick }: Props) {
     >
       {/* WRAPPER */}
       <motion.div
-        className="relative hidden w-10 h-10 max-md:block"
+        className="relative hidden w-10 h-10 max-lg:block"
         animate={active ? "open" : "closed"}
       >
         {/* BUTTON */}
